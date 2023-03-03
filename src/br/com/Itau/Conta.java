@@ -115,4 +115,46 @@ public class Conta {
 			System.out.println("\nImpossível cobrar a mensalidade!");
 
 	}
+	
+	
+	//Getters e Setters
+		public int getNumConta() {
+			return numConta;
+		}
+		
+		public void setNumConta(int numConta) {
+			this.numConta = numConta;
+		}
+		
+		public int getTipoConta() {
+			return tipoConta;
+		}
+		
+		public void setTipoConta(int tipoConta) {
+			this.tipoConta = tipoConta;
+		}
+		
+		public String getDonoConta() {
+			return donoConta;
+		}
+		
+		public void setDonoConta(String donoConta) {
+			this.donoConta = donoConta;
+		}
+		
+		public double getSaldo() {
+			return saldo;
+		}
+		
+		public void setSaldo(double saldo) {
+			this.saldo = saldo;
+		}
+		
+		public boolean isStatus() {
+			return status;
+		}
+		
+		public void setStatus(boolean status) {
+			this.status = status;
+		}
 }
