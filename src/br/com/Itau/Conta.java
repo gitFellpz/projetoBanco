@@ -7,37 +7,46 @@ public class Conta {
 	
 	//Atributos
 	public int numConta;
-	protected int tipoConta;
+	protected String tipoConta;
 	private String donoConta;
 	private double saldo;
 	private boolean status;
 	
 	
 	//Construtor
-	public Conta(int numConta, int tipoConta, String donoConta, double saldo, boolean status) {
-		this.numConta = numConta;
-		this.tipoConta = tipoConta;
-		this.donoConta = donoConta;
+	public Conta() {
 		this.saldo = 0;
 		this.status = false;
 	}
 	
 	
 	//Métodos
-	public void abrirConta(int tipoConta) {		
-		if((this.tipoConta == 1) || (this.tipoConta == 2)) {
-			switch(this.tipoConta) {
-				case 1:
+	public void estadoAtual() {
+		System.out.println(
+				"\n------------------------"
+				+ "\nConta: " + this.getNumConta()
+				+ "\nTipo: "+ this.getTipoConta()
+				+ "\nDono: "+ this.getDonoConta()
+				+ "\nStatus: "+ this.isStatus()
+				+ "\nSaldo: "+ this.getSaldo());
+	}
+	
+	public void abrirConta(String tipoConta) {
+		if((tipoConta == "CP") || (tipoConta == "CC")) {
+			switch(tipoConta) {
+				case "CP":
 					this.saldo =+ 150;
-					//setSaldo(150)
+					//this.setSaldo(150)
 					break;
-				case 2:
+				case "CC":
 					this.saldo =+ 50;
-					//setSaldo(50)
+					//this.setSaldo(50)
 					break;
 			}
 			this.status = true;
-			//setStatus(true)
+			this.tipoConta = tipoConta;
+			//this.setStatus(true)
+			System.out.println("\nConta de "+this.donoConta+" criada com sucesso!");
 		}
 		else {
 			System.out.println("\nValor incorreto! Digite um valor válido.");
@@ -53,7 +62,8 @@ public class Conta {
 			
 			if(teste == true) {
 				this.status = false;
-				//setStatus(false)
+				//this.setStatus(false)
+				System.out.println("\nConta fechada com sucesso!");
 			}
 		}
 	}
@@ -61,8 +71,9 @@ public class Conta {
 	public void depositar(double valor) {
 		if(this.status == true) {
 			if(valor > 0) {
-				saldo =+ valor;
-				//setSaldo(getSaldo + valor)
+				this.saldo += valor;
+				//this.setSaldo(getSaldo + valor)
+				System.out.println("\nDepósito de "+valor+" feito com sucesso!");
 			}
 			else
 				System.out.println("\nDigite um valor maior que 0 para depositar!");
@@ -75,8 +86,10 @@ public class Conta {
 	public boolean sacar(double valor) {
 		if(this.status == true) {
 			if(valor > 0) {
-				if(valor >= saldo) {
-					saldo =- valor;
+				if(valor <= saldo) {
+					this.saldo -= valor;
+					//this.setSaldo(this.getSaldo() - v)
+					System.out.println("\nSaque de "+valor+" feito com sucesso!");
 					return true;
 				}
 				else
@@ -95,14 +108,15 @@ public class Conta {
 		int mensalCC2 = 12;
 		
 		if(this.status == true) {
+			//this.getStatus()
 			if((this.saldo > mensalCP1) || (this.saldo > mensalCC2)) {
 				switch(this.tipoConta) {
-					case 1:
-						saldo =- mensalCP1;
+					case "CP":
+						saldo -= mensalCP1;
 						System.out.println("\nSua mensalidade de "+ mensalCP1 +" reais foi paga!");
 						break;
-					case 2:
-						saldo =- mensalCC2;
+					case "CC":
+						saldo -= mensalCC2;
 						System.out.println("\nSua mensalidade de "+ mensalCC2 +" reais foi paga!");
 						break;
 				}
@@ -126,11 +140,11 @@ public class Conta {
 			this.numConta = numConta;
 		}
 		
-		public int getTipoConta() {
+		public String getTipoConta() {
 			return tipoConta;
 		}
 		
-		public void setTipoConta(int tipoConta) {
+		public void setTipoConta(String tipoConta) {
 			this.tipoConta = tipoConta;
 		}
 		
